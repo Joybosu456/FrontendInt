@@ -26,7 +26,7 @@ const theme = useContext(ThemeContext);
 const cart = useSelector(state => state.cart);`),
   q('redux-data-flow', 'Fundamentals', 'Explain the Redux data flow.', 'A UI event dispatches an action. The store sends the current state and action to the matching reducer logic. The reducer calculates the next state, the store saves it, and subscribed UI reads the updated data and renders. This one-way flow makes state changes easier to trace.', `onClick={() => dispatch(cartSlice.actions.addItem(product))}
 // dispatch -> reducer -> next store state -> subscribed UI render`),
-  q('redux-store', 'Fundamentals', 'What is the Redux store?', 'The store is the single configured container for Redux application state. In a Redux Toolkit application, configureStore combines slice reducers and adds recommended middleware and DevTools setup. Components should normally access state through React Redux hooks rather than importing the store to read it.', `const store = configureStore({
+  q('redux-store', 'Fundamentals', 'What is the Redux store?', 'A Redux Store is a central place where we keep and manage the application global state. It allows different React components to access the same data without passing props through every component.', `const store = configureStore({
   reducer: { cart: cartReducer, user: userReducer },
 });`),
   q('redux-action', 'Fundamentals', 'What is a Redux action?', 'An action describes an event or requested state change. It is a plain object with a type and may carry data in payload. With createSlice, action creators and their type strings are generated from reducer names.', `dispatch(cartSlice.actions.addItem({
@@ -34,7 +34,7 @@ const cart = useSelector(state => state.cart);`),
 }));`),
   q('redux-dispatch', 'Fundamentals', 'What does dispatch() do?', 'dispatch sends an action to the Redux store. The store runs the reducer logic, saves the returned next state, and notifies subscribers when appropriate. Dispatch a generated action creator result, including the required payload when that reducer needs data.', `dispatch(cartSlice.actions.removeItem('book-1'));
 dispatch(cartSlice.actions.clearCart());`),
-  q('redux-reducer', 'Fundamentals', 'What is a reducer in Redux?', 'A reducer computes the next state from the previous state and an action. It should be deterministic and free of side effects. In Redux Toolkit case reducers, apparent mutations are translated by Immer into immutable updates; outside that Immer-managed context, do not mutate state.', `function reducer(state = { count: 0 }, action) {
+  q('redux-reducer', 'Fundamentals', 'What is a reducer in Redux?', 'A reducer is a pure function that takes the current state and an action, then returns the updated state.', `function reducer(state = { count: 0 }, action) {
   if (action.type === 'counter/increment') {
     return { ...state, count: state.count + 1 };
   }
