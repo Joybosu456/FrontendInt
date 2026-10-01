@@ -51,6 +51,17 @@ export function Header({ query, onQueryChange, theme, onThemeChange, onOpenSideb
               <div className="profile-divider" />
               <div className="profile-stat"><span>Topics in your workspace</span><strong>Ready to learn</strong></div>
               <div className="profile-divider" />
+              <button
+                className="setting-choice profile-theme-choice"
+                type="button"
+                aria-pressed={theme === 'dark'}
+                onClick={() => onThemeChange(theme === 'light' ? 'dark' : 'light')}
+              >
+                <span className="setting-choice-icon">◐</span>
+                <span><strong>Dark mode</strong><small>{theme === 'dark' ? 'On' : 'Off'}</small></span>
+                <span className={`toggle${theme === 'dark' ? ' toggle--on' : ''}`}><i /></span>
+              </button>
+              <div className="profile-divider" />
               <button className="profile-signout" onClick={() => { setMenu(''); onLogout() }}>Sign out</button>
             </div>
           )}
