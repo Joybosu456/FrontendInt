@@ -8,6 +8,35 @@ const q = (id, category, question, answer, example, language = 'JavaScript') => 
 })
 
 export const machineCodingQuestions = [
+  q('reverse-string-without-reverse', 'String Problems', 'How do you reverse a string without using the reverse() method?', 'Iterate over each character with for...of and prepend it to a result string. Each new character is placed before the characters already collected, producing the reversed string without calling reverse(). for...of iterates Unicode code points, though complex grapheme clusters can contain multiple code points.', `let str = "mondira";
+let result = "";
+
+for (let char of str) {
+    result = char + result;
+}
+
+console.log(result); // "aridnom"`),
+  q('remove-duplicate-array-values', 'Array Methods', 'How do you remove duplicate elements from an array?', 'A Set stores each value only once, so converting the array to a Set and back is the concise solution. If implementing the logic manually, scan each value against the result built so far and append it only when it has not been seen. This preserves the first occurrence order. The nested-loop version is O(n²); the Set version is typically O(n) time with O(n) extra space.', `const values = [1, 2, 4, 4, 5, 5, 6, 7, 7];
+
+// Concise solution
+console.log([...new Set(values)]);
+// [1, 2, 4, 5, 6, 7]
+
+// Manual nested-loop solution
+const uniqueValues = [];
+for (let i = 0; i < values.length; i += 1) {
+  let isDuplicate = false;
+  for (let j = 0; j < uniqueValues.length; j += 1) {
+    if (values[i] === uniqueValues[j]) {
+      console.log(uniqueValues[j]); // duplicate: 4, 5, 7
+      isDuplicate = true;
+      break;
+    }
+  }
+  if (!isDuplicate) uniqueValues.push(values[i]);
+}
+console.log(uniqueValues);
+// [1, 2, 4, 5, 6, 7]`),
   q('todo-app', 'React Components', 'How would you build a Todo component in React?', 'Keep the todo list and input value in component state. Add a trimmed non-empty item, update an item immutably when it is completed, and remove it by id. Use a stable key for each row and a form so Enter submits naturally. This example keeps data in memory; persistence can be added with localStorage or a backend.', `import { useState } from 'react';
 
 export default function TodoApp() {
